@@ -1,5 +1,5 @@
 {
-  "name": "ng-httpClient",
+  "name": "ng-rest-http",
   "version": "1.0.0",
   "description": "angular http client",
   "main": "./dist/http.service.js",
@@ -8,13 +8,18 @@
     "test": "test"
   },
   "dependencies": {
-    "@angular/common": "^5.2.4",
-    "@angular/core": "^5.2.4",
-    "rxjs": "^5.5.6",
-    "typescript": "^2.6.2"
+    "@angular/common": "^5.0.0",
+    "@angular/compiler": "^5.0.0",
+    "@angular/forms": "^5.0.0",
+    "@angular/http": "^5.0.0",
+    "rxjs": "^5.5.2"
   },
   "devDependencies": {
-    "typescript": "^2.6.2"
+    "@angular/cli": "1.6.2",
+    "@angular/compiler-cli": "^5.0.0",
+    "@types/node": "~6.0.60",
+    "tslint": "~5.7.0",
+    "typescript": "~2.4.2"
   },
   "scripts": {
     "prepublish": "npm run build",
@@ -23,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wangta69/ng-cookie.git"
+    "url": "git+https://github.com/wangta69//ng-httpClient.git"
   },
   "keywords": [
     "http",

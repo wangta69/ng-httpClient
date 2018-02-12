@@ -13,12 +13,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-//import * as constants from '../constants/app.constant'; //<==== this one
+
 
 @Injectable()
 export class RestHttpClient {
 
-//	private apiUrl = 'https://restcountries.eu/rest/v2/all';
 	private apiUrl:string;
 	constructor(private http: HttpClient) {
 	//	this.apiUrl = constants.API_URL;
@@ -28,10 +27,6 @@ export class RestHttpClient {
 	* @return Json
 	*/
 	getapi(obj:any, callback: Function) {
-		//let headers = new Headers();//{ 'Content-Type': 'application/json' }
-	//	headers.append('Access-Control-Allow-Headers', '*');//이부분은 서버의 설정과 동일해야 한다.
-	//	headers.append('Authorization', "Bearer "+localStorage.getItem('authToken'));
-
 		let apiUrl = this.apiUrl + obj.url;
 		let params = obj.params;
 		let result = this.http.get(apiUrl, {observe: 'response'})
@@ -93,12 +88,8 @@ export class RestHttpClient {
 	}
 
 	private handleError(error: Response | any) {
-		console.log('handleError Start...');
 		let errMsg: string;
 		if (error instanceof Response) {
-		//	const body = error.json() || '';
-			//const err = body.error || JSON.stringify(body);
-			//errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
             errMsg = '';
 		} else {
 			errMsg = error.message ? error.message : error.toString();
