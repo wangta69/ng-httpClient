@@ -1,13 +1,3 @@
-
-/**
-* angular 5 에서의 http 사용법
-app.module.ts
-import { HttpClientModule } from '@angular/common/http';/
-imports: [
-  HttpClientModule
-],
-
-*/
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -64,7 +54,6 @@ export class RestHttpClient {
 	//	let params = obj.params;
 
 		let headers = new Headers();//{ 'Content-Type': 'application/json' }
-	//	headers.append('Access-Control-Allow-Headers', '*');//이부분은 서버의 설정과 동일해야 한다.
 		headers.append('Authorization', "Bearer "+localStorage.getItem('authToken'));
 		let result = this.http.post(apiUrl,  {headers:headers})
 			.map(this.extractData)

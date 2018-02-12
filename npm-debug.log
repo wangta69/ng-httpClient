@@ -1,0 +1,130 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files (x86)\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.3
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'C:\\Users\\Administrator\\project\\npm\\ng-httpClient',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\Administrator\AppData\Roaming\npm-cache\ng-rest-http\1.0.0\package.tgz not in flight; packing
+9 verbose correctMkdir C:\Users\Administrator\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+10 info lifecycle ng-rest-http@1.0.0~prepublish: ng-rest-http@1.0.0
+11 verbose lifecycle ng-rest-http@1.0.0~prepublish: unsafe-perm in lifecycle true
+12 verbose lifecycle ng-rest-http@1.0.0~prepublish: PATH: C:\Program Files (x86)\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Administrator\project\npm\ng-httpClient\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\PuTTY\;C:\Users\Administrator\AppData\Local\Android\sdk\platform-tools;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\nodejs\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Java\jdk1.8.0_91\bin;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin;C:\Users\Administrator\AppData\Local\GitHubDesktop\bin;C:\Users\Administrator\AppData\Local\Android\sdk\build-tools\25.0.2;C:\Program Files (x86)\ESTsoft\ALSee\x64
+13 verbose lifecycle ng-rest-http@1.0.0~prepublish: CWD: C:\Users\Administrator\project\npm\ng-httpClient
+14 silly lifecycle ng-rest-http@1.0.0~prepublish: Args: [ '/d /s /c', 'npm run build' ]
+15 silly lifecycle ng-rest-http@1.0.0~prepublish: Returned: code: 0  signal: null
+16 verbose tar pack [ 'C:\\Users\\Administrator\\AppData\\Roaming\\npm-cache\\ng-rest-http\\1.0.0\\package.tgz',
+16 verbose tar pack   'C:\\Users\\Administrator\\project\\npm\\ng-httpClient' ]
+17 verbose tarball C:\Users\Administrator\AppData\Roaming\npm-cache\ng-rest-http\1.0.0\package.tgz
+18 verbose folder C:\Users\Administrator\project\npm\ng-httpClient
+19 verbose addLocalTarball adding from inside cache C:\Users\Administrator\AppData\Roaming\npm-cache\ng-rest-http\1.0.0\package.tgz
+20 verbose correctMkdir C:\Users\Administrator\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+21 silly cache afterAdd ng-rest-http@1.0.0
+22 verbose afterAdd C:\Users\Administrator\AppData\Roaming\npm-cache\ng-rest-http\1.0.0\package\package.json not in flight; writing
+23 verbose correctMkdir C:\Users\Administrator\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+24 verbose afterAdd C:\Users\Administrator\AppData\Roaming\npm-cache\ng-rest-http\1.0.0\package\package.json written
+25 silly publish { name: 'ng-rest-http',
+25 silly publish   version: '1.0.0',
+25 silly publish   description: 'angular http client',
+25 silly publish   main: './dist/http.service.js',
+25 silly publish   types: './dist/http.service.d.ts',
+25 silly publish   directories: { test: 'test' },
+25 silly publish   dependencies:
+25 silly publish    { '@angular/common': '^5.0.0',
+25 silly publish      '@angular/compiler': '^5.0.0',
+25 silly publish      '@angular/core': '^5.0.0',
+25 silly publish      '@angular/http': '^5.0.0',
+25 silly publish      rxjs: '^5.5.2' },
+25 silly publish   devDependencies:
+25 silly publish    { '@angular/cli': '1.6.2',
+25 silly publish      '@angular/compiler-cli': '^5.0.0',
+25 silly publish      '@types/node': '~6.0.60',
+25 silly publish      tslint: '~5.7.0',
+25 silly publish      typescript: '~2.4.2' },
+25 silly publish   scripts:
+25 silly publish    { prepublish: 'npm run build',
+25 silly publish      build: 'tsc',
+25 silly publish      test: 'echo "Error: no test specified" && exit 1' },
+25 silly publish   repository:
+25 silly publish    { type: 'git',
+25 silly publish      url: 'git+https://github.com/wangta69//ng-httpClient.git' },
+25 silly publish   keywords: [ 'http', 'httpClient', 'angular' ],
+25 silly publish   author: { name: 'pondol' },
+25 silly publish   license: 'MIT',
+25 silly publish   bugs: { url: 'https://github.com/wangta69/ng-httpClient/issues' },
+25 silly publish   homepage: 'https://github.com/wangta69/ng-httpClient#readme',
+25 silly publish   gitHead: '84d3088ccf9f5d8f2c3b3c7d35f83fb89b370aef',
+25 silly publish   readme: '# ng-rest-http\n\n## Installation\n```\nnpm install ng-rest-http\n```\n',
+25 silly publish   readmeFilename: 'README.md',
+25 silly publish   _id: 'ng-rest-http@1.0.0',
+25 silly publish   _shasum: 'a4d8684be94fc5dc316d7863f6dbfaef8031d080',
+25 silly publish   _from: '.' }
+26 verbose getPublishConfig undefined
+27 silly mapToRegistry name ng-rest-http
+28 silly mapToRegistry using default registry
+29 silly mapToRegistry registry https://registry.npmjs.org/
+30 silly mapToRegistry data Result {
+30 silly mapToRegistry   raw: 'ng-rest-http',
+30 silly mapToRegistry   scope: null,
+30 silly mapToRegistry   escapedName: 'ng-rest-http',
+30 silly mapToRegistry   name: 'ng-rest-http',
+30 silly mapToRegistry   rawSpec: '',
+30 silly mapToRegistry   spec: 'latest',
+30 silly mapToRegistry   type: 'tag' }
+31 silly mapToRegistry uri https://registry.npmjs.org/ng-rest-http
+32 verbose publish registryBase https://registry.npmjs.org/
+33 silly publish uploading C:\Users\Administrator\AppData\Roaming\npm-cache\ng-rest-http\1.0.0\package.tgz
+34 verbose request uri https://registry.npmjs.org/ng-rest-http
+35 verbose request sending authorization for write operation
+36 info attempt registry request try #1 at 16:29:38
+37 verbose request using bearer token for auth
+38 verbose request id 09a7ab0b9ff445e7
+39 http request PUT https://registry.npmjs.org/ng-rest-http
+40 http 400 https://registry.npmjs.org/ng-rest-http
+41 verbose headers { 'content-type': 'application/json',
+41 verbose headers   'cache-control': 'max-age=300',
+41 verbose headers   'content-length': '98',
+41 verbose headers   'accept-ranges': 'bytes',
+41 verbose headers   date: 'Mon, 12 Feb 2018 07:29:40 GMT',
+41 verbose headers   via: '1.1 varnish',
+41 verbose headers   connection: 'keep-alive',
+41 verbose headers   'x-served-by': 'cache-hnd18744-HND',
+41 verbose headers   'x-cache': 'MISS',
+41 verbose headers   'x-cache-hits': '0',
+41 verbose headers   'x-timer': 'S1518420579.054066,VS0,VE1033',
+41 verbose headers   vary: 'Accept-Encoding, Accept' }
+42 verbose request invalidating C:\Users\Administrator\AppData\Roaming\npm-cache\registry.npmjs.org\ng-rest-http on PUT
+43 error publish Failed PUT 400
+44 verbose stack Error: This package contains unacceptable content. Contact support@npmjs.com. : ng-rest-http
+44 verbose stack     at makeError (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+44 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:290:14)
+44 verbose stack     at Request._callback (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+44 verbose stack     at Request.self.callback (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+44 verbose stack     at emitTwo (events.js:106:13)
+44 verbose stack     at Request.emit (events.js:191:7)
+44 verbose stack     at Request.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+44 verbose stack     at emitOne (events.js:96:13)
+44 verbose stack     at Request.emit (events.js:188:7)
+44 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+45 verbose statusCode 400
+46 verbose pkgid ng-rest-http
+47 verbose cwd C:\Users\Administrator\project\npm\ng-httpClient
+48 error Windows_NT 6.1.7601
+49 error argv "C:\\Program Files (x86)\\nodejs\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+50 error node v6.10.3
+51 error npm  v3.10.10
+52 error code E400
+53 error This package contains unacceptable content. Contact support@npmjs.com. : ng-rest-http
+54 error If you need help, you may report this error at:
+54 error     <https://github.com/npm/npm/issues>
+55 verbose exit [ 1, true ]

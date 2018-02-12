@@ -9,75 +9,67 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
-* angular 5 에서의 http 사용법
-app.module.ts
-import { HttpClientModule } from '@angular/common/http';/
-imports: [
-  HttpClientModule
-],
-
-*/
-const core_1 = require("@angular/core");
-const http_1 = require("@angular/common/http");
-const Observable_1 = require("rxjs/Observable");
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/common/http");
+var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/map");
-let RestHttpClient = class RestHttpClient {
-    constructor(http) {
+var RestHttpClient = (function () {
+    function RestHttpClient(http) {
         this.http = http;
         //	this.apiUrl = constants.API_URL;
     }
     /**
     * @return Json
     */
-    getapi(obj, callback) {
-        let apiUrl = this.apiUrl + obj.url;
-        let params = obj.params;
-        let result = this.http.get(apiUrl, { observe: 'response' })
+    RestHttpClient.prototype.getapi = function (obj, callback) {
+        var _this = this;
+        var apiUrl = this.apiUrl + obj.url;
+        var params = obj.params;
+        var result = this.http.get(apiUrl, { observe: 'response' })
             .map(this.extractData)
             .catch(this.handleError);
-        result.subscribe(data => callback(data), err => this.logError(err));
-    }
+        result.subscribe(function (data) { return callback(data); }, function (err) { return _this.logError(err); });
+    };
     /**
     * @return String
     */
-    directget(obj, callback) {
-        let apiUrl = obj.url;
+    RestHttpClient.prototype.directget = function (obj, callback) {
+        var apiUrl = obj.url;
         this.http.get(apiUrl)
             .subscribe(
         // Successful responses call the first callback.
-        data => {
+        function (data) {
             callback(data);
         }, 
         // Errors will call this callback instead:
-        err => {
+        function (err) {
             console.log('Something went wrong!');
         });
-    }
-    postapi(obj, callback) {
-        let apiUrl = this.apiUrl + obj.url;
+    };
+    RestHttpClient.prototype.postapi = function (obj, callback) {
+        var _this = this;
+        var apiUrl = this.apiUrl + obj.url;
         //	let params = obj.params;
-        let headers = new Headers(); //{ 'Content-Type': 'application/json' }
-        //	headers.append('Access-Control-Allow-Headers', '*');//이부분은 서버의 설정과 동일해야 한다.
+        var headers = new Headers(); //{ 'Content-Type': 'application/json' }
         headers.append('Authorization', "Bearer " + localStorage.getItem('authToken'));
-        let result = this.http.post(apiUrl, { headers: headers })
+        var result = this.http.post(apiUrl, { headers: headers })
             .map(this.extractData)
             .catch(this.handleError);
-        result.subscribe(data => callback(data), err => this.logError(err));
-    }
+        result.subscribe(function (data) { return callback(data); }, function (err) { return _this.logError(err); });
+    };
     //private extractData(res: Response) {
-    extractData(res) {
+    RestHttpClient.prototype.extractData = function (res) {
         try {
-            let body = res.json();
+            var body = res.json();
             return body || {};
         }
         catch (e) {
             return res._body;
         }
-    }
-    handleError(error) {
-        let errMsg;
+    };
+    RestHttpClient.prototype.handleError = function (error) {
+        var errMsg;
         if (error instanceof Response) {
             errMsg = '';
         }
@@ -85,13 +77,14 @@ let RestHttpClient = class RestHttpClient {
             errMsg = error.message ? error.message : error.toString();
         }
         return Observable_1.Observable.throw(errMsg);
-    }
-    logError(err) {
+    };
+    RestHttpClient.prototype.logError = function (err) {
         console.error('There was an error: ' + err);
-    }
-};
-RestHttpClient = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.HttpClient])
-], RestHttpClient);
+    };
+    RestHttpClient = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.HttpClient])
+    ], RestHttpClient);
+    return RestHttpClient;
+}());
 exports.RestHttpClient = RestHttpClient;
