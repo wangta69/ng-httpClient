@@ -1,12 +1,9 @@
 {
   "name": "ng-rest-http",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "angular http client",
   "main": "./dist/http.service.js",
   "types": "./dist/http.service.d.ts",
-  "directories": {
-    "test": "test"
-  },
   "dependencies": {
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",

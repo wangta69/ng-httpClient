@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestHttpClient {
 
-	private apiUrl:string;
+//	private apiUrl:string;
 	constructor(private http: HttpClient) {
 	//	this.apiUrl = constants.API_URL;
 	}
@@ -16,9 +16,9 @@ export class RestHttpClient {
 	/**
 	* @return Json
 	*/
-	getapi(obj:any, callback: Function) {
-		let apiUrl = this.apiUrl + obj.url;
-		let params = obj.params;
+	get(obj:any, callback: Function) {
+		let apiUrl = obj.url;
+		//let params = obj.params;
 		let result = this.http.get(apiUrl, {observe: 'response'})
 			.map(this.extractData)
 			.catch(this.handleError);
@@ -32,7 +32,7 @@ export class RestHttpClient {
 
 	/**
 	* @return String
-	*/
+
 	directget(obj:any, callback: Function) {
 		let apiUrl = obj.url;
 		this.http.get(apiUrl)
@@ -47,10 +47,11 @@ export class RestHttpClient {
 		    }
   		);
 	}
+	*/
 
-
-	postapi(obj:any, callback: Function) {
-		let apiUrl = this.apiUrl + obj.url;
+	post(obj:any, callback: Function) {
+		//let apiUrl = this.apiUrl + obj.url;
+		let apiUrl = obj.url;
 	//	let params = obj.params;
 
 		let headers = new Headers();//{ 'Content-Type': 'application/json' }
@@ -69,8 +70,13 @@ export class RestHttpClient {
 	//private extractData(res: Response) {
 	private extractData(res: any) {
 		try{
-			let body = res.json();
-			return body || {};
+			//{header, status, ok, statusText, type, url, body}
+			if( typeof res.constructor != "undefined" && res.constructor.name == 'HttpResponse')
+				return res.body;
+			else {
+				let body = res.json();
+				return body || {};
+			}
 		}catch(e){
 			return res._body;
 		}
