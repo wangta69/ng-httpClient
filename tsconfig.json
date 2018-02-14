@@ -23,5 +23,9 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true
+  }
 }

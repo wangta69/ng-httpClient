@@ -1,9 +1,9 @@
 {
   "name": "ng-rest-http",
-  "version": "1.0.1",
-  "description": "angular http client",
-  "main": "./dist/http.service.js",
-  "types": "./dist/http.service.d.ts",
+  "version": "1.0.7",
+  "description": "angular rest http client",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "dependencies": {
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
@@ -37,5 +37,8 @@
   "bugs": {
     "url": "https://github.com/wangta69/ng-httpClient/issues"
   },
-  "homepage": "https://github.com/wangta69/ng-httpClient#readme"
+  "homepage": "https://github.com/wangta69/ng-httpClient#readme",
+  "directories": {
+    "test": "test"
+  }
 }

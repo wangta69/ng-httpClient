@@ -9,8 +9,9 @@ npm install ng-rest-http
 
 ## How to use
 ``` app.module.ts
-import { RestHttpClient } from 'ng-rest-http'
+import { RestHttpClient, RestHttpClientModule } from 'ng-rest-http'
 @NgModule({
+    imports: [ RestHttpClientModule ],
   providers: [  RestHttpClient ]
 })
 
