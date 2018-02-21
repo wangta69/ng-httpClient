@@ -41,3 +41,4 @@ export class AComponent{
 ```
 
 [create user service for convenience](wangta69/ng-httpClient/doc/create-new-service.md)
+[create user service for convenience](../../doc/create-new-service.md)
