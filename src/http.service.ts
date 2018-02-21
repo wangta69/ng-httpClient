@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -8,18 +8,39 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestHttpClient {
 
-//	private apiUrl:string;
-	constructor(private http: HttpClient) {
-	//	this.apiUrl = constants.API_URL;
-	}
+	constructor(private http: HttpClient) {}
 
 	/**
-	* @return Json
+	* @param Object {url, params, headers}
+	* url : String,
+	* params {k1:v1, k2:v2....}
+	* headers {k1:v1, k2:v2....}
+	* @return Callback Function
 	*/
 	get(obj:any, callback: Function) {
 		let apiUrl = obj.url;
-		//let params = obj.params;
-		let result = this.http.get(apiUrl, {observe: 'response'})
+
+		let body:any = {};
+		body.observe = 'response';
+
+		if(typeof obj.params != 'undefined'){
+			let Params = new HttpParams();
+			Object.entries(obj.params).forEach(
+			  ([key, value]) => Params = Params.append(key, value)
+			);
+
+			body.params = Params;
+		}
+
+		if(typeof obj.headers != 'undefined'){
+			body.headers = this.createHeders(obj.headers);
+		}
+
+		if(typeof obj.headers != 'undefined'){
+			this.createHeders(obj.headers);
+		}
+
+		let result = this.http.get(apiUrl, body)// the whole Response object you can observe for it
 			.map(this.extractData)
 			.catch(this.handleError);
 
@@ -31,32 +52,22 @@ export class RestHttpClient {
 	}
 
 	/**
-	* @return String
-
-	directget(obj:any, callback: Function) {
-		let apiUrl = obj.url;
-		this.http.get(apiUrl)
-	  .subscribe(
-	    // Successful responses call the first callback.
-		    data => {
-				callback(data);
-			},
-	    	// Errors will call this callback instead:
-		    err => {
-		      console.log('Something went wrong!');
-		    }
-  		);
-	}
+	* @param Object {url, params}
+	* @return Callback Function
 	*/
-
 	post(obj:any, callback: Function) {
 		//let apiUrl = this.apiUrl + obj.url;
 		let apiUrl = obj.url;
-	//	let params = obj.params;
+		let params = obj.params;
 
-		let headers = new Headers();//{ 'Content-Type': 'application/json' }
-		headers.append('Authorization', "Bearer "+localStorage.getItem('authToken'));
-		let result = this.http.post(apiUrl,  {headers:headers})
+		let body:any = {};
+		body.observe = 'response';
+
+		if(typeof obj.headers != 'undefined'){
+			body.headers = this.createHeders(obj.headers);
+		}
+
+		let result = this.http.post(apiUrl, params,  body)
 			.map(this.extractData)
 			.catch(this.handleError);
 
@@ -67,8 +78,24 @@ export class RestHttpClient {
 		);
 	}
 
+	/**
+	* @param Object headers : headers {k1:v1, k2:v2....}
+	*/
+	private createHeders(headers){
+		let header = new HttpHeaders();//{ 'Content-Type': 'application/json' }
+
+		Object.entries(headers).forEach(
+		  ([key, value]) => header = header.append(key, value)
+		);
+
+		return header;
+
+		//header.append('Authorization', "Bearer "+localStorage.getItem('authToken'));
+	}
+
 	//private extractData(res: Response) {
 	private extractData(res: any) {
+
 		try{
 			//{header, status, ok, statusText, type, url, body}
 			if( typeof res.constructor != "undefined" && res.constructor.name == 'HttpResponse')
@@ -81,6 +108,8 @@ export class RestHttpClient {
 			return res._body;
 		}
 	}
+
+
 
 	private handleError(error: Response | any) {
 		let errMsg: string;
