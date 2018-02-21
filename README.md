@@ -40,4 +40,4 @@ export class AComponent{
 }
 ```
 
-11111[a relative link](wangta69/ng-httpClient/doc/create-new-service.md) 22222
+[create user service for convenience](wangta69/ng-httpClient/doc/create-new-service.md)
