@@ -41,4 +41,3 @@ export class AComponent{
 ```
 
 [create user service for convenience](doc/create-new-service.md)
-[create user service for convenience](../../doc/create-new-service.md)
