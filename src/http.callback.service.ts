@@ -17,7 +17,7 @@ export class RestHttpClient {
 	* headers {k1:v1, k2:v2....}
 	* @return Callback Function
 	*/
-	get(obj:any): Promise<any> {
+	get(obj:any, callback: Function) {
 		let apiUrl = obj.url;
 
 		let body:any = {};
@@ -43,20 +43,19 @@ export class RestHttpClient {
 		let result = this.http.get(apiUrl, body)// the whole Response object you can observe for it
 			.map(this.extractData)
 			.catch(this.handleError);
-		return new Promise(resolve => {
-			result.subscribe(
-				data => resolve(data),
-				err => this.logError(err),
-				//() => console.log('')
-			);
-		});
+
+		result.subscribe(
+			data => callback(data),
+			err => this.logError(err),
+			//() => console.log('')
+		);
 	}
 
 	/**
 	* @param Object {url, params}
 	* @return Callback Function
 	*/
-	post(obj:any): Promise<any> {
+	post(obj:any, callback: Function) {
 		//let apiUrl = this.apiUrl + obj.url;
 		let apiUrl = obj.url;
 		let params = obj.params;
@@ -71,13 +70,12 @@ export class RestHttpClient {
 		let result = this.http.post(apiUrl, params,  body)
 			.map(this.extractData)
 			.catch(this.handleError);
-		return new Promise(resolve => {
-			result.subscribe(
-				data => resolve(data),
-				err => this.logError(err),
-			//	() => console.log('')
-			);
-		});
+
+		result.subscribe(
+			data => callback(data),
+			err => this.logError(err),
+		//	() => console.log('')
+		);
 	}
 
 	/**
