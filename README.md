@@ -16,7 +16,8 @@ import { RestHttpClientModule } from 'ng-rest-http'
 
 ```
 
-``` app.componet.ts
+``` 
+app.componet.ts
 import { RestHttpClient } from 'ng-rest-http'
 
 
