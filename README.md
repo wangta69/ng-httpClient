@@ -8,16 +8,16 @@ npm install ng-rest-http
 ```
 
 ## How to use
-``` app.module.ts
+####app.module.ts
+```
 import { RestHttpClientModule } from 'ng-rest-http'
 @NgModule({
     imports: [ RestHttpClientModule ]
 })
 
 ```
-
-``` 
-app.componet.ts
+####app.component.ts
+```
 import { RestHttpClient } from 'ng-rest-http'
 
 
