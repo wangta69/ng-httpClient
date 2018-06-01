@@ -1,31 +1,21 @@
 {
   "name": "ng-rest-http",
-  "version": "1.1.1",
-  "description": "angular rest http client",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "dependencies": {
-    "@angular/common": "^5.0.0",
-    "@angular/compiler": "^5.0.0",
-    "@angular/core": "^5.0.0",
-    "@angular/http": "^5.0.0",
-    "rxjs": "^5.5.2"
+  "version": "2.0.0",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
   },
-  "devDependencies": {
-    "@angular/cli": "1.6.2",
-    "@angular/compiler-cli": "^5.0.0",
-    "@types/node": "~6.0.60",
-    "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
+  "description": "http client module for Angular [ tested for angular6 ]",
+  "main": "karma.conf.js",
+  "directories": {
+    "doc": "doc"
   },
   "scripts": {
-    "prepublish": "npm run build",
-    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wangta69//ng-httpClient.git"
+    "url": "git+https://github.com/wangta69/ng-httpClient.git"
   },
   "keywords": [
     "http",
@@ -37,9 +27,5 @@
   "bugs": {
     "url": "https://github.com/wangta69/ng-httpClient/issues"
   },
-  "homepage": "https://github.com/wangta69/ng-httpClient#readme",
-  "directories": {
-    "doc": "doc",
-    "test": "test"
-  }
+  "homepage": "https://github.com/wangta69/ng-httpClient#readme"
 }
