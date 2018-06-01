@@ -2,9 +2,13 @@
 
 Tested for angular5
 
-## Installation
+## Installation [angular 6]
 ```
 npm install ng-rest-http
+```
+## Installation [angular 5]
+```
+npm install ng-rest-http@1.1.1
 ```
 
 ## How to use

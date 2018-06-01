@@ -81,64 +81,6 @@ export class RestHttpClient {
 	}
 
 	/**
-	* @param Object {url, params}
-	* @return Callback Function
-	*/
-	delete(obj:any): Promise<any> {
-		//let apiUrl = this.apiUrl + obj.url;
-		let apiUrl = obj.url;
-		let params = obj.params;
-
-		let body:any = {};
-		body.observe = 'response';
-
-		if(typeof obj.headers != 'undefined'){
-			body.headers = this.createHeders(obj.headers);
-		}
-
-		let result = this.http.post(apiUrl, params,  body)
-			.map(this.extractData)
-			.catch(this.handleError);
-		return new Promise(resolve => {
-			result.subscribe(
-				data => resolve(data),
-				err => this.logError(err),
-			//	() => console.log('')
-			);
-		});
-	}
-
-
-	/**
-	* @param Object {url, params}
-	* @return Callback Function
-	*/
-	update(obj:any): Promise<any> {
-		//let apiUrl = this.apiUrl + obj.url;
-		let apiUrl = obj.url;
-		let params = obj.params;
-
-		let body:any = {};
-		body.observe = 'response';
-
-		if(typeof obj.headers != 'undefined'){
-			body.headers = this.createHeders(obj.headers);
-		}
-
-		let result = this.http.post(apiUrl, params,  body)
-			.map(this.extractData)
-			.catch(this.handleError);
-		return new Promise(resolve => {
-			result.subscribe(
-				data => resolve(data),
-				err => this.logError(err),
-			//	() => console.log('')
-			);
-		});
-	}
-
-
-	/**
 	* @param Object headers : headers {k1:v1, k2:v2....}
 	*/
 	private createHeders(headers){
