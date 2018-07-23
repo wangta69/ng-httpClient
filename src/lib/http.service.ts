@@ -18,6 +18,19 @@ export class RestHttpClient {
         const body: any = {};
         body.observe = 'response';
 
+        if (!Object.entries) {
+            Object.entries = function( entryObj ) {
+                const ownProps = Object.keys( entryObj );
+                let i = ownProps.length;
+                const resArray = new Array(i); // preallocate the Array
+                while (i--) {
+                    resArray[i] = [ownProps[i], entryObj[ownProps[i]]];
+                }
+
+                return resArray;
+            };
+        }
+
         if (typeof obj.params !== 'undefined') {
             let Params = new HttpParams();
             Object.entries(obj.params).forEach(
@@ -121,6 +134,19 @@ export class RestHttpClient {
     */
     private createHeders (headers) {
         let header = new HttpHeaders (); // { 'Content-Type': 'application/json' }
+
+        if (!Object.entries) {
+            Object.entries = function( entryObj ) {
+                const ownProps = Object.keys( entryObj );
+                let i = ownProps.length;
+                const resArray = new Array(i); // preallocate the Array
+                while (i--) {
+                    resArray[i] = [ownProps[i], entryObj[ownProps[i]]];
+                }
+
+                return resArray;
+            };
+        }
 
         Object.entries(headers).forEach (
             ([key, value]) => header = header.append(key, String(value))
