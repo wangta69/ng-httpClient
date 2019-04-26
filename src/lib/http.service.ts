@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class RestHttpClient {
@@ -19,7 +19,7 @@ export class RestHttpClient {
         body.observe = 'response';
 
         if (!Object.entries) {
-            Object.entries = function( entryObj ) {
+            Object.entries = function( entryObj: any ) {
                 const ownProps = Object.keys( entryObj );
                 let i = ownProps.length;
                 const resArray = new Array(i); // preallocate the Array
@@ -132,11 +132,11 @@ export class RestHttpClient {
     /**
     * @param Object headers : headers {k1:v1, k2:v2....}
     */
-    private createHeders (headers) {
+    private createHeders (headers: HttpHeaders) {
         let header = new HttpHeaders (); // { 'Content-Type': 'application/json' }
 
         if (!Object.entries) {
-            Object.entries = function( entryObj ) {
+            Object.entries = function( entryObj: any ) {
                 const ownProps = Object.keys( entryObj );
                 let i = ownProps.length;
                 const resArray = new Array(i); // preallocate the Array
@@ -155,7 +155,7 @@ export class RestHttpClient {
         return header;
     }
 
-    private extractData (res: any) {
+    private extractData(res: any) {
         try {
             if ( typeof res.constructor !== 'undefined' && res.constructor.name === 'HttpResponse') {
                 return res.body;
