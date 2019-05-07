@@ -23,17 +23,17 @@ export class AComponent{
     constructor(protected http:RestHttpClient){}
 
     const api_url = 'http://sample.domain.com/api/what';
-    const params = {arg1:'arg'.....};
-    const headers = {'Authorization: 'Bearer token'}
+    const params = {arg1: 'arg'.....};
+    const headers = {Authorization: 'Bearer token'}
 
     private get_sample(){
-        this.http.get({'url':api_url, 'params':params, 'headers':headers}).then((res) => {
+        this.http.get({url: api_url, params: params, headers: headers}).then((res) => {
             console.log(res)
         });
     }
 
     private post_sample(){
-        this.http.post({'url':api_url, 'params':params, 'headers':headers}).then((res) => {
+        this.http.post({url: api_url, params: params, headers: headers}).then((res) => {
             console.log(res)
         });
     }
