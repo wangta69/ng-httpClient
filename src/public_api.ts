@@ -2,5 +2,5 @@
  * Public API Surface of ng-functions
  */
 
-export * from './lib/http.module';
-export * from './lib/http.service';
+export {RestHttpClientModule} from './lib/http.module';
+export {RestHttpClient} from './lib/http.service';
