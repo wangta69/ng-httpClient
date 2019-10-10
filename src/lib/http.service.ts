@@ -45,9 +45,9 @@ export class RestHttpClient {
             body.headers = this.createHeders(obj.headers);
         }
 
-        if (typeof obj.headers !== 'undefined') {
-            this.createHeders(obj.headers);
-        }
+        // if (typeof obj.headers !== 'undefined') {
+        //    this.createHeders(obj.headers);
+        //}
 
         return new Promise(resolve => {
             this.http.get(apiUrl, body)
@@ -185,5 +185,80 @@ export class RestHttpClient {
 
     private logError (err: string) {
         console.error('There was an error: ' + err);
+    }
+
+    /**
+    * Not yet tested
+    * @param Object {url, params, headers}
+    * url : String,
+    * params {k1:v1, k2:v2....}
+    * headers {k1:v1, k2:v2....}
+    * @return Callback Function
+    * @param String filetype application/ms-excel  image/jpeg, image/png, and image/svg+xml.
+    * https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+    */
+    filedownload(obj: any, filetype: string): Promise<any> {
+        const apiUrl = obj.url;
+        const body: any = {};
+        body.observe = 'response';
+        body.responseType = 'arraybuffer'; // add responseType
+
+        if (!Object.entries) {
+            Object.entries = ( entryObj: any ) => {
+                const ownProps = Object.keys( entryObj );
+                let i = ownProps.length;
+                const resArray = new Array(i); // preallocate the Array
+                while (i--) {
+                    resArray[i] = [ownProps[i], entryObj[ownProps[i]]];
+                }
+
+                return resArray;
+            };
+        }
+
+        if (typeof obj.params !== 'undefined') {
+            let Params = new HttpParams();
+            Object.entries(obj.params).forEach(
+                ([key, value]) => Params = Params.append(key, String(value))
+            );
+
+            body.params = Params;
+        }
+
+        if (typeof obj.headers !== 'undefined') {
+            body.headers = this.createHeders(obj.headers);
+        }
+
+        if (typeof obj.headers !== 'undefined') {
+            this.createHeders(obj.headers);
+        }
+
+        return new Promise(resolve => {
+            this.http.get(apiUrl, body)
+            .pipe (
+              catchError(this.handleError)
+            )
+            .subscribe(
+                (data) => {
+                    this.downLoadFile(data, filetype);
+                    resolve(data);
+                },
+                // data => resolve(this.extractData(data)),
+                err => this.logError(err)
+            );
+        });
+    }
+    /**
+     * Method is use to download file.
+     * @param data - Array Buffer data
+     * @param type - type of the document.
+     */
+    private downLoadFile(data: any, type: string) {
+        const blob = new Blob([data], { type: type});
+        const url = window.URL.createObjectURL(blob);
+        const pwa = window.open(url);
+        if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
+            console.log( 'Please disable your Pop-up blocker and try again.');
+        }
     }
 }

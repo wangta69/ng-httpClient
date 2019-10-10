@@ -24,16 +24,21 @@ export class AComponent{
 
     const api_url = 'http://sample.domain.com/api/what';
     const params = {arg1: 'arg'.....};
-    const headers = {Authorization: 'Bearer token'}
+    const headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': '*'
+            };
 
     private get_sample(){
-        this.http.get({url: api_url, params: params, headers: headers}).then((res) => {
+        this.http.get({url: api_url, params, headers}).then((res) => {
             console.log(res)
         });
     }
 
     private post_sample(){
-        this.http.post({url: api_url, params: params, headers: headers}).then((res) => {
+        this.http.post({url: api_url, params, headers}).then((res) => {
             console.log(res)
         });
     }
