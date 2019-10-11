@@ -47,7 +47,7 @@ export class RestHttpClient {
 
         // if (typeof obj.headers !== 'undefined') {
         //    this.createHeders(obj.headers);
-        //}
+        // }
 
         return new Promise(resolve => {
             this.http.get(apiUrl, body)
@@ -184,7 +184,8 @@ export class RestHttpClient {
     }
 
     private logError (err: string) {
-        console.error('There was an error: ' + err);
+        console.error('There was an error: ');
+        console.error(err);
     }
 
     /**
