@@ -44,6 +44,15 @@ export class AComponent{
             // HttpResponse {body, headers: {...}, ok, status, statusText, type, url}
         });
     }
+
+    private filedownload_sample(){
+        this.http.filedownload({url: api_url, params, headers}).then((blob) => {
+            console.log(blob)
+            // this.file.writeFile(this.localDirectory, link.icon, blob, {replace: true})
+        });
+    }
+
+
 }
 ```
 

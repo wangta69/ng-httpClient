@@ -8,12 +8,12 @@ export class RestHttpClient {
     constructor(private http: HttpClient) {}
 
     /**
-    * @param Object {url, params, headers}
-    * url : String,
-    * params {k1:v1, k2:v2....}
-    * headers {k1:v1, k2:v2....}
-    * @return Callback Function
-    */
+     * @param Object {url, params, headers}
+     * url : String,
+     * params {k1:v1, k2:v2....}
+     * headers {k1:v1, k2:v2....}
+     * @return Callback Function
+     */
     get(obj: any): Promise<any> {
         const apiUrl = obj.url;
         const body: any = {};
@@ -63,9 +63,9 @@ export class RestHttpClient {
     }
 
     /**
-    * @param Object {url, params}
-    * @return Callback Function
-    */
+     * @param Object {url, params}
+     * @return Callback Function
+     */
     post(obj: any): Promise<any> {
         const apiUrl = obj.url;
         const params = obj.params;
@@ -87,9 +87,9 @@ export class RestHttpClient {
     }
 
     /**
-    * @param Object {url, params}
-    * @return Callback Function
-    */
+     * @param Object {url, params}
+     * @return Callback Function
+     */
     delete(obj: any): Promise<any> {
         const apiUrl = obj.url;
         const params = obj.params;
@@ -111,9 +111,9 @@ export class RestHttpClient {
 
 
     /**
-    * @param Object {url, params}
-    * @return Callback Function
-    */
+     * @param Object {url, params}
+     * @return Callback Function
+     */
     update (obj: any): Promise<any> {
         const apiUrl = obj.url;
         const params = obj.params;
@@ -135,8 +135,8 @@ export class RestHttpClient {
 
 
     /**
-    * @param Object headers : headers {k1:v1, k2:v2....}
-    */
+     * @param Object headers : headers {k1:v1, k2:v2....}
+     */
     private createHeders (headers: HttpHeaders) {
         let header = new HttpHeaders (); // { 'Content-Type': 'application/json' }
 
@@ -172,7 +172,7 @@ export class RestHttpClient {
         }
     }
 
-    private handleError (error: Response | any) {
+    private handleError(error: Response | any) {
         let errMsg: string;
         if (error instanceof Response) {
             errMsg = '';
@@ -183,21 +183,21 @@ export class RestHttpClient {
         return throwError(errMsg);
     }
 
-    private logError (err: string) {
+    private logError(err: string) {
         console.error('There was an error: ');
         console.error(err);
     }
 
     /**
-    * Not yet tested
-    * @param Object {url, params, headers}
-    * url : String,
-    * params {k1:v1, k2:v2....}
-    * headers {k1:v1, k2:v2....}
-    * @return Callback Function
-    * @param String filetype application/ms-excel  image/jpeg, image/png, and image/svg+xml.
-    * https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
-    */
+     * Not yet tested
+     * @param Object {url, params, headers}
+     * url : String,
+     * params {k1:v1, k2:v2....}
+     * headers {k1:v1, k2:v2....}
+     * @return Callback Function
+     * @param String filetype application/ms-excel  image/jpeg, image/png, and image/svg+xml.
+     * https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+     */
     filedownload(obj: any, filetype: string): Promise<any> {
         const apiUrl = obj.url;
         const body: any = {};
@@ -240,9 +240,9 @@ export class RestHttpClient {
               catchError(this.handleError)
             )
             .subscribe(
-                (data) => {
-                    this.downLoadFile(data, filetype);
-                    resolve(data);
+                (data: any) => {
+                //    this.downLoadFile(data.body, filetype);
+                    resolve(data.body);
                 },
                 // data => resolve(this.extractData(data)),
                 err => this.logError(err)
@@ -255,7 +255,8 @@ export class RestHttpClient {
      * @param type - type of the document.
      */
     private downLoadFile(data: any, type: string) {
-        const blob = new Blob([data], { type: type});
+        const blob = new Blob([data], { type});
+
         const url = window.URL.createObjectURL(blob);
         const pwa = window.open(url);
         if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
