@@ -34,12 +34,14 @@ export class AComponent{
     private get_sample(){
         this.http.get({url: api_url, params, headers}).then((res) => {
             console.log(res)
+            // HttpResponse {body, headers: {...}, ok, status, statusText, type, url}
         });
     }
 
     private post_sample(){
         this.http.post({url: api_url, params, headers}).then((res) => {
             console.log(res)
+            // HttpResponse {body, headers: {...}, ok, status, statusText, type, url}
         });
     }
 }
