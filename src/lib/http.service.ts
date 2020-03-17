@@ -90,6 +90,7 @@ export class RestHttpClient {
      * @param Object {url, params}
      * @return Callback Function
      */
+     /*
     delete(obj: any): Promise<any> {
         const apiUrl = obj.url;
         const params = obj.params;
@@ -102,6 +103,26 @@ export class RestHttpClient {
 
         return new Promise(resolve => {
             this.http.post(apiUrl, params,  body)
+            .subscribe(
+                data => resolve(data),
+                err => this.logError(err)
+            );
+        });
+    }
+    */
+
+    delete(obj: any): Promise<any> {
+        const apiUrl = obj.url;
+    //    const params = obj.params;
+        const body: any = {};
+        body.observe = 'response';
+
+        if (typeof obj.headers !== 'undefined') {
+            body.headers = this.createHeders(obj.headers);
+        }
+
+        return new Promise(resolve => {
+            this.http.delete(apiUrl, body)
             .subscribe(
                 data => resolve(data),
                 err => this.logError(err)
@@ -126,6 +147,29 @@ export class RestHttpClient {
 
         return new Promise(resolve => {
             this.http.post(apiUrl, params,  body)
+            .subscribe(
+                data => resolve(data),
+                err => this.logError(err)
+            );
+        });
+    }
+
+    /**
+     * @param Object {url, params}
+     * @return Callback Function
+     */
+    put (obj: any): Promise<any> {
+        const apiUrl = obj.url;
+        const params = obj.params;
+        const body: any = {};
+        body.observe = 'response';
+
+        if (typeof obj.headers !== 'undefined') {
+            body.headers = this.createHeders(obj.headers);
+        }
+
+        return new Promise(resolve => {
+            this.http.put(apiUrl, params,  body)
             .subscribe(
                 data => resolve(data),
                 err => this.logError(err)
