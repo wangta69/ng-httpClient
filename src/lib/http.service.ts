@@ -19,8 +19,8 @@ export class RestHttpClient {
         const body: any = {};
         body.observe = 'response';
 
-        if (!Object.entries) {
-            Object.entries = ( entryObj: any ) => {
+        if (!Object['entries']) {
+            Object['entries'] = ( entryObj: any ) => {
                 const ownProps = Object.keys( entryObj );
                 let i = ownProps.length;
                 const resArray = new Array(i); // preallocate the Array
@@ -34,7 +34,7 @@ export class RestHttpClient {
 
         if (typeof obj.params !== 'undefined') {
             let Params = new HttpParams();
-            Object.entries(obj.params).forEach(
+            Object['entries'](obj.params).forEach(
                 ([key, value]) => Params = Params.append(key, String(value))
             );
 
@@ -184,8 +184,8 @@ export class RestHttpClient {
     private createHeders (headers: HttpHeaders) {
         let header = new HttpHeaders (); // { 'Content-Type': 'application/json' }
 
-        if (!Object.entries) {
-            Object.entries = ( entryObj: any ) => {
+        if (!Object['entries']) {
+            Object['entries'] = ( entryObj: any ) => {
                 const ownProps = Object.keys( entryObj );
                 let i = ownProps.length;
                 const resArray = new Array(i); // preallocate the Array
@@ -196,12 +196,19 @@ export class RestHttpClient {
             };
         }
 
-        Object.entries(headers).forEach (
+        Object['entries'](headers).forEach (
             ([key, value]) => header = header.append(key, String(value))
         );
 
         return header;
     }
+
+    private headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': '*'
+    };
 
     private extractData(res: any) {
         try {
@@ -242,14 +249,14 @@ export class RestHttpClient {
      * @param String filetype application/ms-excel  image/jpeg, image/png, and image/svg+xml.
      * https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
      */
-    filedownload(obj: any, filetype: string): Promise<any> {
+    public async filedownload(obj: any, filetype: string): Promise<any> {
         const apiUrl = obj.url;
         const body: any = {};
         body.observe = 'response';
         body.responseType = 'arraybuffer'; // add responseType
 
-        if (!Object.entries) {
-            Object.entries = ( entryObj: any ) => {
+        if (!Object['entries']) {
+            Object['entries'] = ( entryObj: any ) => {
                 const ownProps = Object.keys( entryObj );
                 let i = ownProps.length;
                 const resArray = new Array(i); // preallocate the Array
@@ -263,7 +270,7 @@ export class RestHttpClient {
 
         if (typeof obj.params !== 'undefined') {
             let Params = new HttpParams();
-            Object.entries(obj.params).forEach(
+            Object['entries'](obj.params).forEach(
                 ([key, value]) => Params = Params.append(key, String(value))
             );
 
@@ -278,7 +285,7 @@ export class RestHttpClient {
             this.createHeders(obj.headers);
         }
 
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
             this.http.get(apiUrl, body)
             .pipe (
               catchError(this.handleError)
@@ -307,4 +314,6 @@ export class RestHttpClient {
             console.log( 'Please disable your Pop-up blocker and try again.');
         }
     }
+
+
 }

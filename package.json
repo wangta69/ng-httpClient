@@ -1,8 +1,6 @@
 {
   "name": "ng-rest-http",
   "version": "3.0.0",
-  "peerDependencies": {
-  },
   "description": "http client module for Angular [ tested for angular6 ]",
   "main": "karma.conf.js",
   "directories": {
@@ -26,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/wangta69/ng-httpClient/issues"
   },
-  "homepage": "https://github.com/wangta69/ng-httpClient#readme"
+  "homepage": "https://github.com/wangta69/ng-httpClient#readme",
+  "dependencies": {
+    "@angular/common": "^13.1.1",
+    "@angular/core": "^13.1.1",
+    "rxjs": "^7.5.1"
+  }
 }
