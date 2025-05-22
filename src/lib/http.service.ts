@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class RestHttpClient {
   constructor(private http: HttpClient) {}
 
@@ -44,14 +46,17 @@ export class RestHttpClient {
       body.headers = this.createHeders(obj.headers);
     }
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.http.get(apiUrl, body)
       .pipe (
-        catchError(this.handleError)
+        // 에러가 발생하면 err를 녀ㅠㄴㅊ갸ㅠㄷdml next 로 보낸다.
+        catchError(err => {return of(err);})
+        // catchError(this.handleError)
+        // catchError(err => {return of(this.handleError(err));})
       )
       .subscribe({
         next: (v) => resolve(v),
-        error: (e) => this.logError(e),
+        error: (e) => reject(e), //  this.logError(e),
         complete: () => console.info('complete') 
       })
     })
@@ -192,16 +197,18 @@ export class RestHttpClient {
     }
   }
 
-  private handleError(error: Response | any): any {
-    let errMsg: string;
-    if (error instanceof Response) {
-      errMsg = '';
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
     } else {
-      errMsg = error.message ? error.message : error.toString();
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
     }
-
-    // return throwError(errMsg);
-    return throwError(()=> new Error(errMsg));
+    return error;
+    // return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
   private logError(err: string): void {
@@ -258,7 +265,9 @@ export class RestHttpClient {
     return new Promise((resolve) => {
       this.http.get(apiUrl, body)
       .pipe (
-        catchError(this.handleError)
+        // catchError(this.handleError)
+        catchError(err => {return of(err);})
+        // catchError(err => {return of(this.handleError(err));})
       )
       .subscribe({
         next: (v: any) => resolve(v.body),
